@@ -2,31 +2,31 @@ import Person from './person';
 
 export default class Team {
   constructor() {
-    this.players = [];
+    this.persons = [];
   }
 
-  add(player) {
-    if (player instanceof Person) {
-      this.players.push(player);
+  add(person) {
+    if (person instanceof Person) {
+      this.persons.push(person);
     } else {
-      throw new Error('Не валидный объект!');
+      throw new Error('Не является экземпляром Person!');
     }
   }
 
   [Symbol.iterator]() {
     let current = 0;
-    const { players } = this;
+    const { persons } = this;
     return {
       next() {
-        if (current < players.length()) {
+        if (current < persons.length) {
           return {
-            value: players[current++],
-            done: false,
+            value: persons[current++],
+            done: false
           };
         }
         return {
           value: undefined,
-          done: true,
+          done: true
         };
       },
     };

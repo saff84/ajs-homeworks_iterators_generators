@@ -1,11 +1,21 @@
+import Person from './person';
+
 export default class Team {
   constructor() {
-    this.members = new Set();
+    this.persons = [];
   }
 
-  * [Symbol.iterator]() {
-    for (const member of this.members) {
-      yield member;
+  add(person) {
+    if (person instanceof Person) {
+      this.persons.push(person);
+    } else {
+      throw new Error('Не является экземпляром Person!');
+    }
+  }
+
+  *[Symbol.iterator]() {
+    for (const person of this.persons) {
+      yield person;
     }
   }
 }
